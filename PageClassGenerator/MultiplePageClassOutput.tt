@@ -1,0 +1,23 @@
+﻿<#@ template  debug="true" hostSpecific="true" language="C#" #>
+<#@ include file="TemplateFileManagerV2.1.ttinclude" #>
+<#@ include file="ClassyLogic.ttinclude" #>
+<#@ include file="GeneratedPageClass.ttinclude" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#
+	var fileList = new string[]{"a.cs","b.cs","c.cs","d.cs"};
+	var manager = TemplateFileManager.Create(this);
+	foreach(var file in fileList)
+    {
+		manager.StartNewFile(file);
+		this.GeneratedPageClass_Render();
+		manager.Process();
+    }
+#>

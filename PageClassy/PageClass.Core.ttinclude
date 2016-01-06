@@ -1,0 +1,39 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="$(SolutionDir)packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="HtmlAgilityPack" #>
+<#@ import namespace="System.Xml.Serialization" #>
+<#@ output extension=".cs" #>
+<#+
+    string Namespace = "";
+    string Pagename = "";
+    string Filename = "";
+    List<Id> IdList = new List<Id>();
+
+    public class Id
+    {
+        public string Name;
+        public string Value;
+    }
+	
+    List<Id> GetIDs(string fileName)
+    {
+		List<Id> ids = new List<Id>();
+        HtmlDocument doc = new HtmlDocument();
+		doc.Load(fileName);
+		foreach (var node in doc.DocumentNode.SelectNodes("//*[@id]"))
+        {
+            HtmlAttribute att = node.Attributes["id"];
+            string attName = Regex.Replace(att.Value, "[^A-Za-z0-9 ]", "") + "ID";
+            string attValue = att.Value;
+            ids.Add(new Id{Name = attName, Value = attValue});
+        }
+		return ids;
+    }
+#>

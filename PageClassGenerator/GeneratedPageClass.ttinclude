@@ -1,0 +1,26 @@
+﻿<#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
+<#+ 
+  // Note: You can call this method from the outside of the template,
+  //       please add parameters as needed.	
+  // To include this templaate just drag this file on another editor
+  // then call this.Template_NewTemplate1_Render()
+  void GeneratedPageClass_Render(/*string param1, string param2 */){			
+		#>
+		
+		using System;
+		using System.Collections.Generic;
+
+		namespace <#=Namespace  #>
+		{
+			class <#=Pagename #>
+			{	 
+			<#foreach (var id in IdList){#>
+			private const string <#=id.Name #> = "<#=id.Value #>";
+			<#}#>
+		}
+		}
+		
+		
+		<#+
+	}	
+#>

@@ -1,0 +1,10 @@
+﻿<#@ include file="PageClass.Core.ttinclude" #><#
+	//Settings
+    Namespace = "My.Namespace";
+    Pagename = "MyPageClassName";
+    Filename = @"AbsolutePath\To\MyPage.aspx";
+    IdList = GetIDs(Filename);
+	if(IdList.Count > 0)
+    {#><#@ include file="PageClass.Generator.ttinclude" #><#
+}
+#>

@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace <#=Namespace  #>
+{
+	class <#=Pagename #>
+	{	 
+	<#foreach (var id in IdList){#>
+	private const string <#=id.Name #> = "<#=id.Value #>";
+	<#}#>
+}
+}
